@@ -1,0 +1,465 @@
+/* ─── ProjectFlow Design System ─────────────────────────────────
+   Primary:   #2563EB (blue)
+   Dark:      #0A0F1E (navy)
+   Sidebar:   #F8FAFC (light slate)
+   Border:    #E2E8F0
+   Text:      #0F172A
+   Muted:     #64748B
+   ──────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ─── LAYOUT ─────────────────────────────────────────────────── */
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #F1F5F9;
+  color: #0F172A;
+}
+
+/* ─── SIDEBAR ────────────────────────────────────────────────── */
+
+.sidebar {
+  width: 220px;
+  background-color: #ffffff;
+  border-right: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex-shrink: 0;
+  box-shadow: 1px 0 0 #E2E8F0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 20px 28px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.03em;
+  border-bottom: 1px solid #E2E8F0;
+  margin-bottom: 16px;
+}
+
+/* The logoPlaceholder becomes the PF icon — styled purely via CSS */
+.logoPlaceholder {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #2563EB;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* ─── NAV LINKS ──────────────────────────────────────────────── */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 12px;
+  flex: 1;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748B;
+  text-decoration: none;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+
+.nav a:hover {
+  color: #0F172A;
+  background: #F1F5F9;
+}
+
+.nav a.active,
+.active {
+  color: #2563EB !important;
+  background: #EFF6FF !important;
+  font-weight: 600;
+  border-left: 2px solid #2563EB;
+}
+
+/* ─── LOGOUT BUTTON ──────────────────────────────────────────── */
+
+/* The form wrapper inside nav */
+.nav form {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.logoutButton {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #E2E8F0;
+  background: transparent;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748B;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.logoutButton:hover {
+  border-color: #EF4444;
+  color: #EF4444;
+  background: #FEF2F2;
+}
+
+/* ─── MAIN CONTENT ───────────────────────────────────────────── */
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────────── */
+
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 0 36px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header h1 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* ─── CARD GRID ──────────────────────────────────────────────── */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 32px 36px;
+}
+
+/* ─── CARD ───────────────────────────────────────────────────── */
+
+.card {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.18s;
+  box-shadow: 0 1px 4px rgba(10, 15, 30, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 130px;
+}
+
+.card:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.08);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.card p {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Colored top accent bar per card — using nth-child */
+.card:nth-child(1) { border-top: 3px solid #2563EB; }
+.card:nth-child(2) { border-top: 3px solid #10B981; }
+.card:nth-child(3) { border-top: 3px solid #8B5CF6; }
+
+/* ─── ADD CARD ───────────────────────────────────────────────── */
+
+.addCard {
+  border: 1.5px dashed #CBD5E1 !important;
+  border-top: 1.5px dashed #CBD5E1 !important;
+  background: #F8FAFC !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addCard:hover {
+  border-color: #2563EB !important;
+  background: #EFF6FF !important;
+  transform: translateY(-2px);
+}
+
+.addCard h3 {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+}
+
+.addCard:hover h3 {
+  color: #2563EB !important;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding: 16px 0;
+    border-right: none;
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+  .logo {
+    padding: 0 16px 16px;
+    margin-bottom: 8px;
+  }
+
+  .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 12px;
+    gap: 4px;
+  }
+
+  .nav form {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .cardGrid {
+    padding: 20px 16px;
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    padding: 0 16px;
+  }
+}
+/* ─── MODAL BACKDROP ─────────────────────────────────────────── */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 15, 30, 0.4); /* Mixed using Dark design token #0A0F1E */
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modalContent {
+  background: #ffffff;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+  animation: slideUp 0.25s ease-out;
+}
+
+/* ─── MODAL HEADER ───────────────────────────────────────────── */
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.modalHeader h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #64748B;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.1s;
+}
+
+.closeButton:hover {
+  color: #0F172A;
+  background: #F1F5F9;
+}
+
+/* ─── MODAL FORM & INPUTS ────────────────────────────────────── */
+
+.modalForm {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.formGroup .optional {
+  color: #64748B;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #E2E8F0;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  color: #0F172A;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #94A3B8;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+/* ─── ACTION BUTTONS ─────────────────────────────────────────── */
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.cancelButton {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #E2E8F0;
+  background: transparent;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cancelButton:hover {
+  background: #F8FAFC;
+  color: #0F172A;
+  border-color: #CBD5E1;
+}
+
+.submitButton {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #2563EB;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+  transition: all 0.15s;
+}
+
+.submitButton:hover {
+  background: #1D4ED8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ─── MOBILE MODAL RESPONSIVE ────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .modalContent {
+    width: calc(100% - 32px);
+    margin: 16px;
+  }
+}

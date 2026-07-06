@@ -1,0 +1,315 @@
+/* ─── ProjectFlow Design System ─────────────────────────────────
+   Primary:   #2563EB (blue)
+   Dark:      #0A0F1E (navy)
+   Bg:        #F1F5F9
+   Border:    #E2E8F0
+   Text:      #0F172A
+   Muted:     #64748B
+   ──────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ─── OVERLAY ────────────────────────────────────────────────── */
+
+.overlayContainer {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 30, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 16px;
+}
+
+/* ─── MODAL ──────────────────────────────────────────────────── */
+
+.modal {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #E2E8F0;
+  box-shadow:
+    0 32px 80px rgba(10, 15, 30, 0.22),
+    0 4px 16px rgba(10, 15, 30, 0.08);
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px 36px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ─── CLOSE BUTTON ───────────────────────────────────────────── */
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  font-size: 18px;
+  line-height: 1;
+  color: #64748B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.closeButton:hover {
+  background: #FEF2F2;
+  border-color: #FECACA;
+  color: #EF4444;
+}
+
+/* ─── BACK BUTTON ────────────────────────────────────────────── */
+
+.backButton {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64748B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.backButton:hover {
+  border-color: rgba(37, 99, 235, 0.27);
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+/* ─── LOGO CIRCLE ────────────────────────────────────────────── */
+
+.logoCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #2563EB;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+  flex-shrink: 0;
+}
+
+/* ─── HEADINGS ───────────────────────────────────────────────── */
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.subheading {
+  font-size: 0.9rem;
+  color: #64748B;
+  font-weight: 400;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+/* ─── PRIMARY BUTTON ─────────────────────────────────────────── */
+
+.primaryButton {
+  width: 100%;
+  padding: 12px;
+  background: #2563EB;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: #1D4ED8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.primaryButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.primaryButton:disabled {
+  background: #93C5FD;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ─── SOCIAL BUTTONS ─────────────────────────────────────────── */
+
+.socialButton {
+  width: 100%;
+  padding: 11px 16px;
+  margin-bottom: 10px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0F172A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.15s;
+  font-family: inherit;
+  box-shadow: 0 1px 3px rgba(10, 15, 30, 0.04);
+}
+
+.socialButton:hover {
+  border-color: rgba(37, 99, 235, 0.27);
+  background: #EFF6FF;
+  color: #2563EB;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+/* ─── DISCLAIMER ─────────────────────────────────────────────── */
+
+.disclaimer {
+  font-size: 11.5px;
+  color: #94A3B8;
+  line-height: 1.7;
+  margin: 16px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #F1F5F9;
+  width: 100%;
+}
+
+.disclaimer a {
+  color: #2563EB;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.disclaimer a:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+/* ─── LOGIN LINK ─────────────────────────────────────────────── */
+
+.loginLink {
+  font-size: 13px;
+  color: #64748B;
+  margin-top: 14px;
+  font-weight: 400;
+}
+
+.loginLink a {
+  color: #2563EB;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.loginLink a:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+/* ─── FORM ───────────────────────────────────────────────────── */
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* ─── INPUT GROUP ────────────────────────────────────────────── */
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.inputGroup label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+
+/* ─── INPUT ──────────────────────────────────────────────────── */
+
+.input {
+  padding: 11px 14px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+  color: #0F172A;
+  background: #F8FAFC;
+}
+
+.input::placeholder {
+  color: #94A3B8;
+}
+
+.input:focus {
+  border-color: #2563EB;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ─── ERROR MESSAGES ─────────────────────────────────────────── */
+
+.errorMessage {
+  font-size: 0.78rem;
+  color: #EF4444;
+  font-weight: 500;
+  margin: -10px 0 12px 2px;
+  text-align: left;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 36px 20px 28px;
+    border-radius: 16px;
+  }
+
+  .heading {
+    font-size: 1.3rem;
+  }
+}
