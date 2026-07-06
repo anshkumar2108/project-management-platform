@@ -32,3 +32,14 @@ export type SignInFormState = | {
     }
     message?: string
 } | undefined
+export const createWorkspaceSchema = z.object({
+    wname: z.string().min(2, { error: "Name should be minimum of 2 characters." }),
+    wdesc: z.string().min(5, { error: "Description should be atleast 5 characters long." })
+})
+export type createWorkspaceState = | {
+    errors?: {
+        wname?: string[],
+        wdesc?: string[]
+    }
+    message?: string
+} | undefined

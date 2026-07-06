@@ -1,7 +1,9 @@
-create table workspaces(
-workspace_id INT primary key,
-name varchar(100) NOT NULL,
-owner_id INT references users(id),
-created_at DATE,
-updated_at DATE
+CREATE TABLE workspaces (
+    workid SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+	description VARCHAR(50),
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ownerid INT,
+    FOREIGN KEY (ownerid) REFERENCES users(id) ON DELETE CASCADE
 );

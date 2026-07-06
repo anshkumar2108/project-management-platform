@@ -1,12 +1,14 @@
 'use server';
-import { SignInFormState, SigninFormSchema, SignupFormSchema, SignupFormState } from "@/lib/definitions";
+import { SignInFormState, SigninFormSchema, SignupFormSchema, SignupFormState, createWorkspaceSchema, createWorkspaceState } from "@/lib/definitions";
 import bcrypt from "bcryptjs";
 import { pool } from "@/lib/data";
-import { createsession } from "@/lib/session";
+import { createsession, decrypt } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { errors } from "jose";
 import { deleteSession } from "@/lib/session";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import { success } from "zod";
 export async function login(state: SignInFormState, formData: FormData) {
     //1. Validate the data.
     const validatedFields = SigninFormSchema.safeParse({
@@ -27,14 +29,14 @@ export async function login(state: SignInFormState, formData: FormData) {
     }
     const user_db = result.rows[0];
     const stored_password = user_db.password;
-    const match = await bcrypt.compare(password,stored_password);
-    if(match){
+    const match = await bcrypt.compare(password, stored_password);
+    if (match) {
         await createsession(user_db.id);
         redirect('/dashboard')
-    }else{
-        return{
-            errors:{
-                email:["Invalid Email or password."],
+    } else {
+        return {
+            errors: {
+                email: ["Invalid Email or password."],
             }
         }
     }
@@ -85,8 +87,45 @@ export async function handleSignup(formstate: SignupFormState, formData: FormDat
         };
     }
 }
-export async function logout(){
+export async function handleWorkspaceCreation(formstate: createWorkspaceState, formData: FormData) {
+    const valFields = createWorkspaceSchema.safeParse({
+        wname: formData.get('workspaceName'),
+        wdesc: formData.get('workspaceDesc')
+    });
+    if (!valFields.success) {
+        return {
+            errors: valFields.error.flatten().fieldErrors,
+            message: "Missing or invalid fields.",
+        };
+    }
+
+    const { wname, wdesc } = valFields.data
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get('session')?.value
+    if (!sessionCookie) {
+        redirect('/login')
+    }
+    try {
+        const decryptedSession = await decrypt(sessionCookie);
+        if (!decryptedSession || !decryptedSession.userId) {
+            throw new Error("Invalid session data.");
+        }
+        const userId=parseInt(decryptedSession.userId,10);
+        const text = 'INSERT INTO workspaces (name,description,ownerid) VALUES ($1,$2,$3)'
+        const values = [wname, wdesc,userId];
+        const res = await pool.query(text, values);
+        return {
+            success:true,
+            message:"Workspace Created Successfully.",
+            user:res.rows[0]
+        }
+    }catch(error){
+        throw new Error;
+    }
+    // console.log(res);
+}
+export async function logout() {
     await deleteSession();
-    revalidatePath('/','layout');//Clears the client side cache of paths.
+    revalidatePath('/', 'layout');//Clears the client side cache of paths.
     redirect('/login');
 }
